@@ -7,6 +7,7 @@ from aiogram.enums import ParseMode
 from config.config import Config, load_config
 from handlers.other import other_router
 from handlers.user import user_router
+from keyboards.set_menu import set_main_menu
 
 
 logger = logging.getLogger(__name__)
@@ -25,6 +26,7 @@ async def main():
     dp.include_router(user_router)
     dp.include_router(other_router)
 
+    await set_main_menu(bot)
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
